@@ -9,7 +9,7 @@ services:
             dockerfile: Dockerfile
             args:
                 user: user
-                uid: 1000
+                uid: 1001
         restart: unless-stopped
         volumes:
             - ./:/var/www/html

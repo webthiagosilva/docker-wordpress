@@ -54,4 +54,6 @@ if [[ "$1" == apache2* ]] || [ "$1" = 'php-fpm' ]; then
 	fi
 fi
 
+chown -R "$user:$group" /var/www/html
+
 exec "$@"

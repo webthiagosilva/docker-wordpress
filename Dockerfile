@@ -37,9 +37,11 @@ RUN echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT\n\
 COPY ./.build/php.ini /usr/local/etc/php/conf.d/php.ini
 COPY --chmod=755 ./.build/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN useradd -G www-data,root -u $uid -d /home/$user $user && chown -R $user:www-data /var/www/html
+
+USER $user
 
 WORKDIR /var/www/html
 
-#ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["php-fpm"]
